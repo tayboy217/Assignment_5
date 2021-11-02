@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+before_action :authenticate_user!
 
   def search
     @model = params["search"]["model"]
@@ -53,5 +54,5 @@ class SearchesController < ApplicationController
       partical(model, value)
     end
   end
-  
+
 end

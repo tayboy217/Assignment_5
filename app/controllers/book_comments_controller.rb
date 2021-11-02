@@ -10,14 +10,14 @@ class BookCommentsController < ApplicationController
 		else
 		  render 'books/show'
 		end
-	end
+  end
 
   def destroy
     @book = Book.find(params[:book_id])
   	book_comment = @book.book_comments.find(params[:id])
 		book_comment.destroy
 		redirect_to request.referer
-	end
+  end
 
   
   private
