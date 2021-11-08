@@ -13,3 +13,5 @@ before_action :authenticate_user!
     favorite.destroy
   end
 end
+
+
