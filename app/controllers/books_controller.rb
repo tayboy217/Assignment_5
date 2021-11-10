@@ -1,11 +1,12 @@
 class BooksController < ApplicationController
 before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-
+impressionist :actions => [:show]
   def show
     @book_new = Book.new
     @book = Book.find(params[:id])
     @user = @book.user
     @book_comment = BookComment.new
+   impressionist(@book, nil, unique: [:session_hash])
   end
 
 
@@ -15,6 +16,7 @@ before_action :ensure_correct_user, only: [:edit, :update, :destroy]
      to    = (from + 6.day).at_end_of_day
      books = Book.where(created_at: from...to)
     @books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=>a.favorited_users.size}
+    @rank_books = Book.order(impressions_count: 'DESC')
   end
 
   def create

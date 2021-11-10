@@ -25,8 +25,8 @@ class ChatsController < ApplicationController
   end
 
   def create
-    @chat = current_user.chats.new(chat_params)
-    @chat.save
+     @chat = current_user.chats.new(chat_params)
+     @chat.save
   end
 
   private
